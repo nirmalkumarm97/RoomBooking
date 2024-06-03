@@ -1,0 +1,17 @@
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\bin\Debug\net6.0\BuisnessRepository.deps.json
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\bin\Debug\net6.0\BuisnessRepository.dll
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\bin\Debug\net6.0\BuisnessRepository.pdb
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\obj\Debug\net6.0\BuisnessRepository.csproj.AssemblyReference.cache
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\obj\Debug\net6.0\BuisnessRepository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\obj\Debug\net6.0\BuisnessRepository.AssemblyInfoInputs.cache
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\obj\Debug\net6.0\BuisnessRepository.AssemblyInfo.cs
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\obj\Debug\net6.0\BuisnessRepository.csproj.CoreCompileInputs.cache
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\obj\Debug\net6.0\BuisnessRepository.dll
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\obj\Debug\net6.0\refint\BuisnessRepository.dll
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\obj\Debug\net6.0\BuisnessRepository.pdb
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\obj\Debug\net6.0\ref\BuisnessRepository.dll
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\bin\Debug\net6.0\Data.dll
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\bin\Debug\net6.0\Models.dll
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\bin\Debug\net6.0\Data.pdb
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\bin\Debug\net6.0\Models.pdb
+C:\Users\LTP-0\source\repos\RoomBooking\BuisnessRepository\obj\Debug\net6.0\BuisnessRepository.csproj.CopyComplete
