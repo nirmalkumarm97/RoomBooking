@@ -1,4 +1,5 @@
-﻿using Data.NewFolder;
+﻿using BuisnessRepository.IBusinessRepository;
+using Data.NewFolder;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Models.Request;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace BuisnessRepository.BusinessRepository
 {
-    public class UserRepository
+    public class UserRepository:IUserRepository
     {
         private readonly RoomBookingDbContext _roomBookingDbContext;
         public UserRepository(RoomBookingDbContext roomBookingDbContext)
@@ -111,7 +112,7 @@ namespace BuisnessRepository.BusinessRepository
                 return "An error occurred while deleting users. Please try again later.";
             }
         }
-        public async Task<string> UpdateUsers(UserRequest userRequest, int Id)
+        public async Task<string> UpdateUser(UserRequest userRequest, int Id)
         {
             if (userRequest == null)
             {
