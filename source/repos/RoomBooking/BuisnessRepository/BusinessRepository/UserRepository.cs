@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace BuisnessRepository.BusinessRepository
 {
-    public class UserRepository:IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly RoomBookingDbContext _roomBookingDbContext;
         public UserRepository(RoomBookingDbContext roomBookingDbContext)
