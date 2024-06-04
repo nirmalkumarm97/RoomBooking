@@ -1,4 +1,5 @@
-﻿using Data.NewFolder;
+﻿using BuisnessRepository.IBusinessRepository;
+using Data.NewFolder;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 using Models.Request;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace BuisnessRepository.BusinessRepository
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly RoomBookingDbContext _roomBookingDbContext;
         public UserRepository(RoomBookingDbContext roomBookingDbContext)
