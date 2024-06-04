@@ -12,7 +12,7 @@ namespace BuisnessRepository.IBusinessRepository
     {
      Task<string> CreateUsers(List<UserRequest> userRequest);
      Task<string> DeleteUsers(List<int> Ids);
-     Task<string> UpdateUsers(UserRequest userRequest , int Id);
+     Task<string> UpdateUser(UserRequest userRequest , int Id);
      Task<AuthenticateResponse> AuthenticateUser(AuthenticateRequest authenticate);
     }
 }

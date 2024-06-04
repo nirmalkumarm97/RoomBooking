@@ -112,7 +112,7 @@ namespace BuisnessRepository.BusinessRepository
                 return "An error occurred while deleting users. Please try again later.";
             }
         }
-        public async Task<string> UpdateUsers(UserRequest userRequest, int Id)
+        public async Task<string> UpdateUser(UserRequest userRequest, int Id)
         {
             if (userRequest == null)
             {

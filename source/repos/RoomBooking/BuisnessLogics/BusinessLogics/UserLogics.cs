@@ -20,8 +20,7 @@ namespace BuisnessLogics.BusinessLogics
 
         public Task<string> CreateUsers(List<UserRequest> userRequest) => _userRepository.CreateUsers(userRequest);
         public Task<string> DeleteUsers(List<int> Ids) => _userRepository.DeleteUsers(Ids);
-        public Task<string> UpdateUsers(UserRequest userRequest, int Id) => _userRepository.UpdateUsers(userRequest, Id);
+        public Task<string> UpdateUser(UserRequest userRequest, int Id) => _userRepository.UpdateUser(userRequest, Id);
         public Task<AuthenticateResponse> AuthenticateUser(AuthenticateRequest authenticate) => _userRepository.AuthenticateUser(authenticate);
-
     }
 }

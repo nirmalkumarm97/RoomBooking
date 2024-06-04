@@ -41,11 +41,11 @@ namespace Controllers.Controllers
         }
 
         [HttpPut("UpdateUser")]
-       public async Task<IActionResult> UpdateUsers(UserRequest userRequest, int Id)
+       public async Task<IActionResult> UpdateUser(UserRequest userRequest, int Id)
         {
             try
             {
-                return Ok(await _userLogics.UpdateUsers(userRequest, Id) ?? throw new InvalidOperationException());
+                return Ok(await _userLogics.UpdateUser(userRequest, Id) ?? throw new InvalidOperationException());
             }
             catch (Exception ex)
             {
