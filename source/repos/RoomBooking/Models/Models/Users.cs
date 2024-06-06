@@ -19,5 +19,6 @@ namespace Models.Models
         public DateTime CreatedAt { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedAt { get; set; }
+        public ICollection<CustomerDetails> CustomerDetails { get; set; }
     }
 }
