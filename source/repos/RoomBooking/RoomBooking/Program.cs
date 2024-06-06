@@ -2,15 +2,21 @@ using BuisnessLogics.BusinessLogics;
 using BuisnessLogics.IBusinessLogics;
 using BuisnessRepository.BusinessRepository;
 using BuisnessRepository.IBusinessRepository;
+using Controllers.CustomMiddleware;
 using Data.NewFolder;
 using Microsoft.AspNet.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(x =>
+{
+    x.Filters.Add<CustomAsyncActionFilter>();
+});
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<RoomBookingDbContext>(options => options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Controllers")));
 builder.Services.AddTransient<IUserLogics, UserLogics>();
@@ -32,7 +38,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseMiddleware<RequestLoggingMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();
