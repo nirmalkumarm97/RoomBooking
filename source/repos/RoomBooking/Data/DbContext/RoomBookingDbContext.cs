@@ -17,6 +17,6 @@ namespace Data.NewFolder
 
         }
         public virtual DbSet<Users> Users { get; set; }
-
+        public virtual DbSet<CustomerDetails> CustomerDetails { get; set; }
     }
 }

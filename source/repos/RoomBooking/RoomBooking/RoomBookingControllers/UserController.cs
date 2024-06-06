@@ -7,10 +7,10 @@ namespace Controllers.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomBookingController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUserLogics _userLogics;
-        public RoomBookingController(IUserLogics userLogics)
+        public UserController(IUserLogics userLogics)
         {
             _userLogics = userLogics;
         }
@@ -27,8 +27,8 @@ namespace Controllers.Controllers
             }
         }
 
-        [HttpDelete("DelateUsers")]
-        public async Task<IActionResult> DelateUsers(List<int> Ids)
+        [HttpDelete("DeleteUsers")]
+        public async Task<IActionResult> DeleteUsers(List<int> Ids)
         {
             try
             {

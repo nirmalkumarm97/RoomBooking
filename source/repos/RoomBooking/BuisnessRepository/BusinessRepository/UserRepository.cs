@@ -38,6 +38,7 @@ namespace BuisnessRepository.BusinessRepository
                     {
                         Users user = new Users()
                         {
+                            Name = request.Name,
                             Email = request.Email,
                             Password = request.Password,
                             IsActive = true,

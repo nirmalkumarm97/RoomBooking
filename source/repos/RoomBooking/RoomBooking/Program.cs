@@ -15,6 +15,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<RoomBookingDbContext>(options => options.UseNpgsql(connectionString, b => b.MigrationsAssembly("Controllers")));
 builder.Services.AddTransient<IUserLogics, UserLogics>();
 builder.Services.AddTransient<IUserRepository,UserRepository>();
+builder.Services.AddTransient<ICustomerLogics, CustomerLogics>();
+builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
