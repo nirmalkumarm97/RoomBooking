@@ -20,5 +20,8 @@ namespace Data.NewFolder
         public virtual DbSet<CustomerDetails> CustomerDetails { get; set; }
         public virtual DbSet<BookingDetails> BookingDetails { get; set; }
         public virtual DbSet<RoomPriceMaster> RoomPriceMaster { get; set; }
+        public virtual DbSet<FoodAccomodationMaster> FoodAccomodationMaster { get; set; }
+        public virtual DbSet<FoodTransaction> FoodTransactions { get; set; }
+        public virtual DbSet<BillingTransaction>  BillingTransactions { get; set; }
     }
 }

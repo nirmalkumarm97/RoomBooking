@@ -10,7 +10,7 @@ namespace Models.Request
     {
         public string CustomerName { get; set; }
         public string Proof { get; set; }
-        public DateOnly DateOfBirth { get; set; }
+        public string DateOfBirth { get; set; }
         public string Address { get; set; }
         public int CreatedBy { get; set; }
     }
