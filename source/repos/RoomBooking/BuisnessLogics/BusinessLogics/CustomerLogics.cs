@@ -17,5 +17,6 @@ namespace BuisnessLogics.BusinessLogics
             _customerRepository = customerRepository;
         }
         public Task<string> CreateCustomer(CustomerRequest customerRequest) => _customerRepository.CreateCustomer(customerRequest);
+        public Task<string> CreateBookingDetails(BookingRequest bookingRequest, string? bookingId) => _customerRepository.CreateBookingDetails(bookingRequest, bookingId);
     }
 }

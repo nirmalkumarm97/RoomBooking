@@ -20,7 +20,19 @@ namespace Controllers.Controllers
         {
             try
             {
-                return Ok(await CreateCustomer(customerRequest) ?? throw new InvalidOperationException());
+                return Ok(await _customerLogics.CreateCustomer(customerRequest) ?? throw new InvalidOperationException());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("CreateBookingDetails")]
+        public async Task<IActionResult> CreateBookingDetails(BookingRequest bookingRequest, string? bookingId)
+        {
+            try
+            {
+                return Ok(await _customerLogics.CreateBookingDetails(bookingRequest, bookingId) ?? throw new InvalidOperationException());
             }
             catch (Exception ex)
             {
