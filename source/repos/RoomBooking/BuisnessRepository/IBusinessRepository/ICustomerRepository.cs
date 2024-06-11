@@ -11,6 +11,6 @@ namespace BuisnessRepository.IBusinessRepository
     {
         Task<string> CreateCustomer(CustomerRequest customerRequest);
         Task<string> CreateBookingDetails(BookingRequest bookingRequest, int? bookingId);
-        Task<string> AddFoodDetails (FoodTransactionRequest foodTransactionRequest , int customerId);
+        Task<string> AddFoodDetails (List<FoodTransactionRequest> foodTransactionRequests , int customerId);
     }
 }

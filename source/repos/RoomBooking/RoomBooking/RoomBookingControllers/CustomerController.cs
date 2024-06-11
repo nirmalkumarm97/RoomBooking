@@ -41,13 +41,13 @@ namespace Controllers.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostFoodTransaction(FoodTransactionRequest request , int customerId)
+        public async Task<IActionResult> PostFoodTransaction(List<FoodTransactionRequest> foodTransactionRequests, int customerId)
         {
-            if (request == null)
+            if (foodTransactionRequests == null)
             {
                 return BadRequest("Invalid request.");
             }
-            string result = await _customerLogics.AddFoodDetails(request, customerId) ?? throw new InvalidOperationException());
+            string result = await _customerLogics.AddFoodDetails(foodTransactionRequests, customerId) ?? throw new InvalidOperationException();
 
             return Ok(new { Message = result });
         }
