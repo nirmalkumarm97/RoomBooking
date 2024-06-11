@@ -13,6 +13,7 @@ namespace Models.Models
         public int Id { get; set; }
         [ForeignKey("CustomerId")]
         public CustomerDetails CustomerDetails { get; set; }
+        public int CustomerId { get; set; }
         public double TotalCostOfRooms { get; set; }
         public double TotalCostOfFood { get; set; }
         public int CreatedBy { get; set; }

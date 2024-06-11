@@ -28,7 +28,7 @@ namespace Controllers.Controllers
             }
         }
         [HttpPost("CreateBookingDetails")]
-        public async Task<IActionResult> CreateBookingDetails(BookingRequest bookingRequest, string? bookingId)
+        public async Task<IActionResult> CreateBookingDetails(BookingRequest bookingRequest, int? bookingId)
         {
             try
             {
@@ -38,6 +38,18 @@ namespace Controllers.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostFoodTransaction(FoodTransactionRequest request , int customerId)
+        {
+            if (request == null)
+            {
+                return BadRequest("Invalid request.");
+            }
+            string result = await _customerLogics.AddFoodDetails(request, customerId) ?? throw new InvalidOperationException());
+
+            return Ok(new { Message = result });
         }
     }
 }

@@ -5,6 +5,7 @@ using Models.Models;
 using Models.Request;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -98,7 +99,7 @@ namespace BuisnessRepository.BusinessRepository
             File.WriteAllBytes(filePath, pdfBytes);
             return filePath;
         }
-        public async Task<string> CreateBookingDetails(BookingRequest bookingRequest, string? bookingId)
+        public async Task<string> CreateBookingDetails(BookingRequest bookingRequest, int? bookingId)
         {
             if (bookingRequest == null)
                 throw new ArgumentNullException(nameof(bookingRequest));
@@ -115,9 +116,9 @@ namespace BuisnessRepository.BusinessRepository
             if (bookingRequest.CreatedBy <= 0)
                 throw new ArgumentException("Invalid Created By ID.");
 
-            if (string.IsNullOrWhiteSpace(bookingId))
+            if (bookingId != 0)
             {
-                var lastBooking = _roomBookingDbContext.BookingDetails.Where(x => x.BookingId == bookingId).FirstOrDefault();
+                var lastBooking = _roomBookingDbContext.BookingDetails.Where(x => x.Id == bookingId).FirstOrDefault();
                 if (lastBooking != null)
                 {
                     lastBooking.FromDateTime = bookingRequest.FromDateTime;
@@ -156,22 +157,77 @@ namespace BuisnessRepository.BusinessRepository
                 return "Create Succeed";
             }
         }
-        private string GenerateBookingId(string? bookingId)
+        private string GenerateBookingId(int? CustomerId)
         {
             var lastBooking = _roomBookingDbContext.BookingDetails.OrderByDescending(x => x.Id).FirstOrDefault();
+
             if (lastBooking == null)
             {
                 return "B" + lastId; // Return the new ID prefixed with 'B'
             }
-            else if (bookingId == null)
+            else if ((CustomerId == null || CustomerId == 0) && (lastBooking != null))
             {
-                string newbookingId = bookingId.Replace("B", "");
+                string oldBookingId = lastBooking.BookingId;
+                string newbookingId = oldBookingId.Replace("B", "");
                 int number = Convert.ToInt32(newbookingId);
                 number++;
                 string result = "B" + number.ToString();
                 return result;
             }
-            else return bookingId;
+            else return lastBooking.BookingId;
+        }
+        public async Task<string> AddFoodDetails(List<FoodTransactionRequest> foodTransactionRequests, int customerId)
+        {
+            if (foodTransactionRequests == null || !foodTransactionRequests.Any())
+            {
+                throw new ArgumentNullException(nameof(foodTransactionRequests));
+            }
+            var existingTransactions = await _roomBookingDbContext.FoodTransactions
+        .Where(x => x.CustomerId == customerId)
+        .ToListAsync();
+
+            if (existingTransactions.Any())
+            {
+                foreach (var request in foodTransactionRequests)
+                {
+                    // Find the corresponding transaction by some unique identifier in request
+                    var transaction = existingTransactions
+                        .FirstOrDefault(x => x.Id == request.Id); // Adjust matching logic as needed
+
+                    if (transaction != null)
+                    {
+                        // Update the transaction details
+                        transaction.FoodItemId = request.FoodItemId;
+                        transaction.ModifiedBy = request.CreatedBy;
+                        transaction.ModifiedAt = DateTime.UtcNow;
+
+                        _roomBookingDbContext.FoodTransactions.Update(transaction);
+                    }
+                }
+            }
+
+            // Add new transactions for each request in the list
+            foreach (var request in foodTransactionRequests)
+            {
+                if (request.Id == null || request.Id == 0)
+                {
+                    var foodTransaction = new FoodTransaction
+                    {
+                        CustomerId = customerId,
+                        FoodItemId = request.FoodItemId,
+                        CreatedBy = request.CreatedBy,
+                        CreatedAt = DateTime.UtcNow
+                    };
+                    _roomBookingDbContext.FoodTransactions.Add(foodTransaction);
+                }
+            }
+
+            await _roomBookingDbContext.SaveChangesAsync();
+            return "Food transaction request processed successfully.";
         }
     }
 }
+
+
+
+
