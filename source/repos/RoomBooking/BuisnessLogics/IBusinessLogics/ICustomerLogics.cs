@@ -10,6 +10,7 @@ namespace BuisnessLogics.IBusinessLogics
     public interface ICustomerLogics 
     {
         Task<string> CreateCustomer(CustomerRequest customerRequest);
-        Task<string> CreateBookingDetails(BookingRequest bookingRequest, string? bookingId);
+        Task<string> CreateBookingDetails(BookingRequest bookingRequest, int? bookingId);
+        Task<string> AddFoodDetails(FoodTransactionRequest foodTransactionRequest, int customerId);
     }
 }
