@@ -3,6 +3,7 @@ using Data.NewFolder;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models.Models;
 using Models.Request;
+using Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -225,6 +226,40 @@ namespace BuisnessRepository.BusinessRepository
             await _roomBookingDbContext.SaveChangesAsync();
             return "Food transaction request processed successfully.";
         }
+        public async Task<BillingResponse> GetBillingDetails(int customerId)
+        {
+            var initial = await _roomBookingDbContext.BookingDetails.Where(x => x.CustomerId == customerId).ToListAsync();
+            var roomPrice = await _roomBookingDbContext.RoomPriceMaster.ToListAsync();
+
+            if (initial.Any())
+            {
+
+                BillingResponse amount = (from a in initial
+                                          join b in roomPrice on a.RoomType equals b.Id
+                                          let duration = a.ToDateTime - a.FromDateTime
+                                          select new BillingResponse
+                                          {
+                                              Billing = new List<RoomList>
+                                     {
+                                       new RoomList
+                                       {
+                                           RoomName = b.RoomType,
+                                           AdultCount = a.AdultCount,
+                                           ChildrenCount = a.ChildrenCount ?? 0,
+                                           NoOfDays = (int)duration.GetValueOrDefault().TotalDays,
+                                           Price = ((b.PriceWithTax * a.AdultCount) + (b.PriceWithTax * a.ChildrenCount ?? 0)) * ((int)duration.GetValueOrDefault().TotalDays)
+                                       }
+                                     }
+                                          }).FirstOrDefault();
+                return amount;
+            }
+            else
+            {
+                throw new Exception("Values Cannot be null");
+            }
+
+        }
+
     }
 }
 

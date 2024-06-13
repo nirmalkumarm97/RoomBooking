@@ -1,4 +1,5 @@
 ﻿using Models.Request;
+using Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace BuisnessRepository.IBusinessRepository
         Task<string> CreateCustomer(CustomerRequest customerRequest);
         Task<string> CreateBookingDetails(BookingRequest bookingRequest, int? bookingId);
         Task<string> AddFoodDetails (List<FoodTransactionRequest> foodTransactionRequests , int customerId);
+        Task<BillingResponse> GetBillingDetails(int customerId);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BuisnessLogics.IBusinessLogics;
 using BuisnessRepository.IBusinessRepository;
 using Models.Request;
+using Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,6 @@ namespace BuisnessLogics.BusinessLogics
         public Task<string> CreateCustomer(CustomerRequest customerRequest) => _customerRepository.CreateCustomer(customerRequest);
         public Task<string> CreateBookingDetails(BookingRequest bookingRequest, int? bookingId) => _customerRepository.CreateBookingDetails(bookingRequest, bookingId);
         public Task<string> AddFoodDetails(List<FoodTransactionRequest> foodTransactionRequests , int customerId) => _customerRepository.AddFoodDetails(foodTransactionRequests , customerId);
+        public async Task<BillingResponse> GetBillingDetails(int customerId) => await _customerRepository.GetBillingDetails(customerId);
     }
 }
