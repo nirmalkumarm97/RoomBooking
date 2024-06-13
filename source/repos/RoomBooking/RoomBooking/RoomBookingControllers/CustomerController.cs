@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.Request;
+using Models.Response;
 
 namespace Controllers.Controllers
 {
@@ -27,7 +28,8 @@ namespace Controllers.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("CreateBookingDetails")]
+        [HttpPost]
+        [Route("CreateBookingDetails")]
         public async Task<IActionResult> CreateBookingDetails(BookingRequest bookingRequest, int? bookingId)
         {
             try
@@ -50,6 +52,24 @@ namespace Controllers.Controllers
             string result = await _customerLogics.AddFoodDetails(foodTransactionRequests, customerId) ?? throw new InvalidOperationException();
 
             return Ok(new { Message = result });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetBillingDetails(int customerId)
+        {
+            if (customerId <= 0)
+            {
+                return BadRequest("Invalid request.");
+            }
+            try
+            {
+                var response = await _customerLogics.GetBillingDetails(customerId);
+                return Ok(response);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
